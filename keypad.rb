@@ -1,18 +1,19 @@
-
 class Keypad
   
   #   1 2 3
   #   4 3 6
   #   7 8 9
+  #     0
 
   attr_accessor :keypad
 
   
   def initialize(deadkeys = [])
     @deadkeys = deadkeys.uniq
-    @keypad   = [[1, 2, 3],
-                 [4, 5, 6],
-                 [7, 8, 9]]
+    @keypad   = [[ 1,  2,  3 ],
+                 [ 4,  5,  6 ],
+                 [ 7,  8,  9 ],
+                 [nil, 0, nil]]
 
     destroy_keys
   end
@@ -39,7 +40,7 @@ class Keypad
 
   
   def invalid_digits
-    (1..9).to_a - @keypad.flatten.uniq
+    (0..9).to_a - @keypad.flatten.uniq
   end
 
 

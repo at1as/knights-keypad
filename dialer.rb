@@ -19,14 +19,12 @@ class Dialer
     coords << [x - 1, y + 2]
     coords << [x + 1, y - 2]
     coords << [x + 1, y + 2]
-
+    
     valid_coords = coords.reject do |x| 
-      ( 
-        x[0] < @keypad.horizontal_bounds.min || 
-        x[0] > @keypad.horizontal_bounds.max ||
-        x[1] < @keypad.vertical_bounds.min   || 
-        x[1] > @keypad.vertical_bounds.max
-      )
+      x[0] < @keypad.vertical_bounds.min || 
+      x[0] > @keypad.vertical_bounds.max ||
+      x[1] < @keypad.horizontal_bounds.min || 
+      x[1] > @keypad.horizontal_bounds.max
     end
 
     valid_coords.map { |x| @keypad.keypad[x[0]][x[1]] }.reject(&:nil?)
